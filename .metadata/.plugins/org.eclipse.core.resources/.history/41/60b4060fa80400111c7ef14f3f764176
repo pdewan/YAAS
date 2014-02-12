@@ -1,0 +1,19 @@
+package nodes;
+
+import bus.uigen.shapes.ALineModel;
+import bus.uigen.shapes.SimpleShape;
+
+public class ALinearElement extends AnAbstractLinearElement implements VisualizerElement<LinearElement>, LinearElement {
+
+	public ALinearElement(SimpleShape s, Object o, ALineModel l,
+			ALineModel l2) {
+		super(s, o, l, l2);
+	}
+
+	@Override
+	public void focusPosition() {
+		focusPosition(this);
+		
+	}
+
+}

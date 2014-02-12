@@ -1,0 +1,13 @@
+package nodes;
+
+import bus.uigen.shapes.ALineModel;
+import bus.uigen.shapes.SimpleShape;
+
+public class AVisualizerElement extends AnAbstractLinearElement implements VisualizerElement {
+
+	public AVisualizerElement(SimpleShape s, Object o, ALineModel l,
+			ALineModel l2) {
+		super(s, o, l, l2);
+	}
+
+}

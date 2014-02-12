@@ -1,0 +1,15 @@
+package examples;
+
+import bus.uigen.ObjectEditor;
+import bus.uigen.shapes.ACurveModel;
+import bus.uigen.shapes.AnArcModel;
+
+public class Testing {
+	
+	public static void main(String[] args){
+		
+		AnArcModel arc = new AnArcModel(50,50,50,50,100,100);
+		ACurveModel curve = new ACurveModel(50,50,50,50,50,50);
+		ObjectEditor.edit(curve);
+	}
+}

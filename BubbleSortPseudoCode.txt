@@ -1,0 +1,7 @@
+BubbleSort(int array[])
+	while (swapOcurred)
+		swapOcurred = false
+		for j = 0 to array.size - 1
+			if array[j] > array[j + 1]	
+				swap(a, j, j + 1)
+				swapOcurred = true

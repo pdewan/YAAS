@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="shapes.ACompositeShape"/>
+<fullyQualifiedTypeName name="bus.uigen.shapes.ARectangleModel"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="shapes.LineModel"/>
+<fullyQualifiedTypeName name="nodes.VisualizerElement"/>
+<fullyQualifiedTypeName name="nodes.AVisualizerElement"/>
+<fullyQualifiedTypeName name="bus.uigen.shapes.Shape"/>
+<fullyQualifiedTypeName name="bus.uigen.shapes.ALineModel"/>
+<fullyQualifiedTypeName name="command.objects.ASwapCommand"/>
+<fullyQualifiedTypeName name="wdh.pgm.cv.iface.Control"/>
+<fullyQualifiedTypeName name="bus.uigen.shapes.ATextModel"/>
+<fullyQualifiedTypeName name="collection.visualizers.ACollectionVisualizer"/>
+<fullyQualifiedTypeName name="wdh.pgm.cv.iface.CollectionVisualizer"/>
+<fullyQualifiedTypeName name="collection.visualizers.ATreeBasedCollectionVisualizer2"/>
+<fullyQualifiedTypeName name="nodes.AVisualizerRoot"/>
+<fullyQualifiedTypeName name="bus.uigen.shapes.ALabelModel"/>
+<fullyQualifiedTypeName name="shapes.Util"/>
+<fullyQualifiedTypeName name="common.Algorithms"/>
+<fullyQualifiedTypeName name="comparators.AComparator"/>
+<fullyQualifiedTypeName name="nodes.AGraphElement"/>
+<fullyQualifiedTypeName name="bus.uigen.shapes.AnOvalModel"/>
+<fullyQualifiedTypeName name="collection.visualizers.AGraphVisualizer"/>
+<fullyQualifiedTypeName name="util.models.ListenableVector"/>
+<fullyQualifiedTypeName name="bus.uigen.shapes.SimpleShape"/>
+<fullyQualifiedTypeName name="util.models.AListenableVector"/>
+<fullyQualifiedTypeName name="bus.uigen.shapes.AnArcModel"/>
+<fullyQualifiedTypeName name="bus.uigen.ObjectEditor"/>
+<fullyQualifiedTypeName name="bus.uigen.shapes.ACurveModel"/>
+</qualifiedTypeNameHistroy>

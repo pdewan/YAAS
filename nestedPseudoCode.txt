@@ -1,0 +1,11 @@
+public synchronized void previous() {
+	buttonPressTrapper.maybeDiscardPreviousButtonPress();
+	this.setChanged();
+	this.notifyObservers(\"previous\");
+}
+
+public synchronized void next() {
+	buttonPressTrapper.maybeDiscardNextButtonPress();
+	this.setChanged();
+	this.notifyObservers(\"next\");
+}

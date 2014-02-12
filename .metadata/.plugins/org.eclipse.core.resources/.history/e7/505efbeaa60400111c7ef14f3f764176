@@ -1,0 +1,13 @@
+package nodes;
+
+public interface LinearElement {
+	
+	public int getHorizontalLineYOffset();
+	public int getVerticalLineXOffset();
+	public int getElementShapeYOffset();
+	public int getElementShapeXOffset();
+	public void setHorizontalLineYOffset(int newY);
+	public void setVerticalLineXOffset(int newX);
+	public void setElementShapeYOffset(int newY);
+	public void setElementShapeXOffset(int newX);
+}

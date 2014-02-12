@@ -1,0 +1,11 @@
+package examples;
+
+import bus.uigen.shapes.AnArcModel;
+
+public class Testing {
+	
+	public static void main(String[] args){
+		
+		AnArcModel arc = new AnArcModel(50,50,50,50,0,0);
+	}
+}

@@ -1,0 +1,75 @@
+package nodes;
+
+import util.models.AListenableVector;
+import util.models.ListenableVector;
+import bus.uigen.shapes.AnArcModel;
+import bus.uigen.shapes.SimpleShape;
+
+public class AGraphElement extends AVisualizerElementSkeleton<GraphElement>
+		implements GraphElement {
+
+	private ListenableVector<AnArcModel> graphPaths = new AListenableVector<AnArcModel>();
+
+	public AGraphElement(SimpleShape s, Object o) {
+		super(s, o);
+	}
+
+	@Override
+	public void focusPosition(GraphElement node) {
+		ListenableVector<GraphElement> vector = getVector();
+		GraphElement previousElement = null;
+
+		for (GraphElement element : vector) {
+			if (previousElement != null) {
+				element.setX(previousElement.getX() + elementShapeXOffset);
+				element.setY(previousElement.getY() + elementShapeYOffset);
+			}
+
+			previousElement = element;
+		}
+		positionLines();
+	}
+
+	protected void positionLines() {
+		for (int i = 0; i < vector.size(); i++) {
+			AnArcModel arc = graphPaths.get(i);
+			
+			//the halfway point offset between the two
+			int dx = (vector.get(i).getX() - this.getX()) / 2;
+			int dy = (vector.get(i).getY() - this.getY()) / 2;
+			
+			//the halfway point between the nodes
+			arc.setX(this.getX() + dx);
+			arc.setY(this.getY() + dy);
+			
+			arc.setWidth(dx * 2);
+			arc.setHeight(dy * 2);
+			
+			arc.setStartAngle(0);
+			arc.setEndAngle(0);
+		}
+	}
+
+	@Override
+	public void focusPosition() {
+		focusPosition(this.getVector().get(0));
+
+	}
+
+	@Override
+	public ListenableVector<AnArcModel> getLines() {
+		return graphPaths;
+	}
+
+	@Override
+	public void setParent(GraphElement p) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setPreviousChild(GraphElement p) {
+		// TODO Auto-generated method stub
+
+	}
+}

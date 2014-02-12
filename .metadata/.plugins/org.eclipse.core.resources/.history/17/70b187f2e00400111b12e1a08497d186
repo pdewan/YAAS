@@ -1,0 +1,206 @@
+package collection.visualizers;
+
+import java.util.Collection;
+
+import nodes.AGraphElement;
+
+import common.Util;
+
+import util.models.AListenableVector;
+import util.models.ListenableVector;
+import bus.uigen.shapes.ALineModel;
+import bus.uigen.shapes.AnArcModel;
+import bus.uigen.shapes.SimpleShape;
+
+public class AGraphVisualizer extends ACollectionVisualizer {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4429720055007135228L;
+	private ListenableVector<ALineModel> LINE_VEC = new AListenableVector<ALineModel>();
+	private ListenableVector<SimpleShape> shapes = new AListenableVector<SimpleShape>();
+	private ListenableVector<AGraphElement> graph = new AListenableVector<AGraphElement>();
+	private int initX = 20, initY = 20;
+
+	@SuppressWarnings("unchecked")
+	public AGraphVisualizer(SimpleShape representation) {
+		super(representation);
+		boxWidth = 50;
+		boxHeight = 50;
+		add(LINE_VEC);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	protected ListenableVector<SimpleShape> displayVector(
+			ListenableVector vector, int colNum) {
+		initGraph(vector);
+		graph.get(0).focusPosition();
+		Util.animationPauseTime = animationPauseTime;
+		Util.animationStep = animationStep;
+		return shapes;
+	}
+
+	private void initGraph(ListenableVector<ListenableVector<Integer>> v) {
+		initNodes(v);
+		populateAdjacencyList(v);
+	}
+
+	private void initNodes(ListenableVector<ListenableVector<Integer>> v) {
+
+		for (int i = 0; i < v.size(); i++) {// for every node in the adjacency
+			// list
+
+			String stringValue = Integer.toString(i);
+			SimpleShape shape = createShape(stringValue, initX, initY);// create
+			// the
+			// node
+
+			ListenableVector<AnArcModel> lines = new AListenableVector<AnArcModel>();
+
+			for (int j = 0; j < v.get(i).size(); j++) {
+				// add a line for each
+				// adjacent element
+				lines.add(new ALineModel(0, 0, 0, 0));
+			}
+
+			AGraphElement visualizerElement = new AGraphElement(shape,
+					stringValue);
+
+			visualizerElement.getLines().addAll(lines);
+
+			visualizerElement.setElementShapeXOffset(boxWidth);
+			visualizerElement.setElementShapeYOffset(boxHeight);
+
+			graph.add(visualizerElement);
+			shapes.add(visualizerElement.getShape());
+			LINE_VEC.addAll(lines);
+		}
+	}
+
+	private void populateAdjacencyList(
+			ListenableVector<ListenableVector<Integer>> v) {
+
+		for (int i = 0; i < v.size(); i++) { // for every node in the list
+			AGraphElement currentNode = graph.get(i);
+
+			for (Integer adjacentNode : v.get(i)) { // for each of its adjacent
+				// nodes
+				// we subtract 1 to map from an index of one to an index of zero
+				currentNode.getVector().add(graph.get(adjacentNode - 1));
+			}
+		}
+	}
+
+	@Override
+	public void magnify(double mag) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public int theStepCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void elementAdded(Object source, Object element, int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementChanged(Object source, Object element, int pos) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementCopied(Object source, int fromIndex, int toIndex,
+			int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementCopied(Object source, int fromIndex, int fromNewSize,
+			Object to, int toIndex) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementInserted(Object source, Object element, int pos,
+			int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementMoved(Object source, int fromIndex, int toIndex) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementMoved(Object source, int fromIndex, int fromNewSize,
+			Object to, int toIndex) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementRemoved(Object source, int pos, int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementRemoved(Object source, Object element, int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementReplaced(Object source, int fromIndex, int toIndex,
+			int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementReplaced(Object source, int fromIndex, int newFromSize,
+			Object to, int toIndex) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementSwapped(Object newParam, int index1, int index2) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementSwapped(Object source, int index1, Object other,
+			int index2) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void elementsAdded(Object source, Collection element, int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementsCleared(Object source) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,26 @@
+package examples;
+
+import util.models.AListenableVector;
+import util.models.ListenableVector;
+import bus.uigen.ObjectEditor;
+import bus.uigen.shapes.ATextModel;
+import collection.visualizers.ACollectionVisualizer;
+import collection.visualizers.ATreeBasedCollectionVisualizer2;
+
+public class BubbleSortExample {
+	public static void main(String args[])
+	{
+		ListenableVector<Integer> vector = new AListenableVector<Integer>();
+		vector.add(3);
+		vector.add(2);
+		vector.add(1);
+		vector.add(0);
+		
+		ACollectionVisualizer visualizer = new ATreeBasedCollectionVisualizer2(new ATextModel("",0,0,80,20));
+		visualizer.setDynamicHeight(false);
+		visualizer.setDynamicWidth(true);
+		visualizer.visualize(vector);
+		ObjectEditor.edit(visualizer);
+		ObjectEditor.edit(visualizer.getController());
+	}
+}

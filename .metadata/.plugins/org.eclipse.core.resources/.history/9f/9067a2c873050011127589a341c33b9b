@@ -1,0 +1,72 @@
+package nodes;
+
+import util.models.AListenableVector;
+import util.models.ListenableVector;
+import bus.uigen.shapes.AnArcModel;
+import bus.uigen.shapes.SimpleShape;
+
+public class AGraphElement extends AVisualizerElementSkeleton<GraphElement>
+		implements GraphElement {
+
+	private ListenableVector<AnArcModel> graphPaths = new AListenableVector<AnArcModel>();
+
+	public AGraphElement(SimpleShape s, Object o) {
+		super(s, o);
+	}
+
+	@Override
+	public void focusPosition(GraphElement node) {
+		ListenableVector<GraphElement> vector = getVector();
+		GraphElement previousElement = null;
+
+		for (GraphElement element : vector) {
+			if (previousElement != null) {
+				element.setX(previousElement.getX() + elementShapeXOffset);
+				element.setY(previousElement.getY() + elementShapeYOffset);
+			}
+
+			previousElement = element;
+		}
+		// we use a separate loop for this because we need all the shape's
+		// positions to be set before we set the arc positions
+		for (GraphElement element : vector) {
+			positionLines(element);
+		}
+	}
+
+	protected void positionLines(GraphElement element) {
+		
+		int x = element.getX() + element.getWidth() / 2;
+		for (GraphElement adjacentElement : vector) {
+			
+			int y = element.getY() / 2 + adjacentElement.getY() / 2;
+			// set the width = node
+			// set the height =
+			// set the start angle =
+			// set the end angle =
+		}
+	}
+
+	@Override
+	public void focusPosition() {
+		focusPosition(this.getVector().get(0));
+
+	}
+
+	@Override
+	public ListenableVector<AnArcModel> getLines() {
+		return graphPaths;
+	}
+
+	@Override
+	public void setParent(GraphElement p) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setPreviousChild(GraphElement p) {
+		// TODO Auto-generated method stub
+
+	}
+}

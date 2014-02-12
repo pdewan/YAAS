@@ -1,0 +1,52 @@
+package examples;
+
+import util.models.AListenableVector;
+import util.models.ListenableVector;
+import bus.uigen.ObjectEditor;
+import bus.uigen.shapes.AnOvalModel;
+import collection.visualizers.ACollectionVisualizer;
+import collection.visualizers.AGraphVisualizer;
+
+public class GraphExample {
+	
+	public static void main(String[] args) {
+		
+		ListenableVector<Integer> node1 = new AListenableVector<Integer>();
+		ListenableVector<Integer> node2 = new AListenableVector<Integer>();
+		ListenableVector<Integer> node3 = new AListenableVector<Integer>();
+		ListenableVector<Integer> node4 = new AListenableVector<Integer>();
+		ListenableVector<ListenableVector<Integer>> adjacencyList = new AListenableVector<ListenableVector<Integer>>();
+		
+		adjacencyList.add(node1);
+		adjacencyList.add(node2);
+		adjacencyList.add(node3);
+		adjacencyList.add(node4);
+		
+		node1.add(1);
+		node1.add(2);
+		node1.add(3);
+		node1.add(4);
+		
+		node2.add(1);
+		node2.add(2);
+		node2.add(3);
+		node2.add(4);
+		
+		node3.add(1);
+		node3.add(2);
+		node3.add(3);
+		node3.add(4);
+		
+		node4.add(1);
+		node4.add(2);
+		node4.add(3);
+		node4.add(4);
+
+		ACollectionVisualizer visualizer = new AGraphVisualizer(
+				new AnOvalModel(0,0,50,50));
+		
+		visualizer.visualize(adjacencyList);
+		ObjectEditor.edit(visualizer);
+		ObjectEditor.edit(visualizer.getController());
+	}
+}

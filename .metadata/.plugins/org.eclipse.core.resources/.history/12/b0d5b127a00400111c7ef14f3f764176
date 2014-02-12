@@ -1,0 +1,329 @@
+package collection.visualizers;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import common.Util;
+
+import nodes.AVisualizerElement;
+import nodes.AVisualizerRoot;
+import nodes.VisualizerElement;
+
+import util.models.AListenableVector;
+import util.models.ListenableVector;
+import bus.uigen.shapes.ALineModel;
+import bus.uigen.shapes.LabelShape;
+import bus.uigen.shapes.SimpleShape;
+import bus.uigen.shapes.TextShape;
+
+@SuppressWarnings("unchecked")
+public class ATreeBasedCollectionVisualizer2 extends ACollectionVisualizer {
+
+	private static final long serialVersionUID = 2125646954227767702L;
+	private ListenableVector<ALineModel> LINE_VEC = new AListenableVector<ALineModel>();
+	private ListenableVector<SimpleShape> shapes = new AListenableVector<SimpleShape>();
+	private VisualizerElement root;
+
+	List<VisualizerElement> elementsToBeMoved1 = new ArrayList<VisualizerElement>();
+	List<VisualizerElement> elementsToBeMoved2 = new ArrayList<VisualizerElement>();
+
+	int xOffset = 80;
+	int initX = 20, initY = 20;
+
+	/**************** Initialization *******************************/
+	public ATreeBasedCollectionVisualizer2(SimpleShape shape) {
+		super(shape);
+		add(LINE_VEC);
+		animationPauseTime = 0;
+		boxWidth = shape.getWidth();
+		boxHeight = shape.getHeight();
+		horizontalSpacing = 50;
+		verticalSpacing = 10;
+	}
+
+	@Override
+	protected ListenableVector displayVector(ListenableVector vector, int colNum) {
+		root = initRoot(vector, null, null);
+		//initElements(root, vector);
+		root.focusPosition(root);
+		Util.animationPauseTime = animationPauseTime;
+		Util.animationStep = animationStep;
+		return shapes;
+	}
+
+	/********************** Graphics Methods *******************************************/
+
+	private void initElements(VisualizerElement head, ListenableVector vector) {
+		for (int i = 0; i < vector.size(); i++) {
+
+			Object element = vector.get(i);
+			VisualizerElement node;
+			if (i > 0) { // If this is not the first node in the list
+				VisualizerElement previousChild = head.getVector().get(i - 1);
+				node = initElement(element, head, previousChild);
+			} else {
+				node = initElement(element, head, null);
+			}
+			head.getVector().add(node);
+		}
+	}
+
+	private AVisualizerRoot initRoot(Object element,
+			VisualizerElement parent, VisualizerElement previousChild) {
+
+		String stringValue = element.toString();
+		SimpleShape shape = createShape(stringValue, initX, initY);
+		ALineModel horizontalLine = new ALineModel(0, 0, 0, 0);
+		ALineModel verticalLine = new ALineModel(0, 0, 0, 0);
+
+		AVisualizerRoot visualizerElement = new AVisualizerRoot(shape,
+				stringValue, verticalLine, horizontalLine);
+
+		postInitElement(element, parent, previousChild, visualizerElement);
+		return visualizerElement;
+	}
+
+	private void postInitElement(Object element, VisualizerElement parent,
+			VisualizerElement previousChild, VisualizerElement visualizerElement) {
+		visualizerElement.setElementShapeXOffset(boxWidth);
+		visualizerElement.setElementShapeYOffset(boxHeight / 2);
+		visualizerElement.setHorizontalLineYOffset(boxHeight / 2);
+		visualizerElement.setVerticalLineXOffset(boxWidth / 2);
+
+		visualizerElement.setParent(parent);
+		visualizerElement.setPreviousChild(previousChild);
+
+		if (element instanceof ListenableVector) {
+			initElements(visualizerElement, (ListenableVector) element);
+		}
+
+		shapes.add(visualizerElement.getShape());
+		LINE_VEC.add(visualizerElement.getHorizontalLine());
+		LINE_VEC.add(visualizerElement.getVerticalLine());
+	}
+
+	private VisualizerElement initElement(Object element,
+			VisualizerElement parent, VisualizerElement previousChild) {
+
+		String stringValue = element.toString();
+		SimpleShape shape = createShape(stringValue, initX, initY);
+		ALineModel horizontalLine = new ALineModel(0, 0, 0, 0);
+		ALineModel verticalLine = new ALineModel(0, 0, 0, 0);
+
+		VisualizerElement visualizerElement = new AVisualizerElement(shape,
+				stringValue, verticalLine, horizontalLine);
+
+		postInitElement(element, parent, previousChild, visualizerElement);
+		
+		return visualizerElement;
+	}
+
+	@Override
+	public void magnify(double mag) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public int theStepCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void elementAdded(Object source, Object element, int newSize) {
+
+		elementInserted(source, element, newSize - 1, newSize);
+	}
+
+	public void elementChanged(Object source, Object element, int pos) {
+
+		VisualizerElement node = root.getVector().get(pos);
+		Util.move(node, node.getX() + boxWidth / 3, node.getY(), true);
+		node.setObject(element);
+		
+		SimpleShape shape = node.getShape();
+		if (shape instanceof TextShape)
+			((TextShape) shape).setText(element.toString());
+		if (shape instanceof LabelShape)
+			((LabelShape) shape).setText(element.toString());
+
+		Util.move(node, node.getX() - boxWidth / 3, node.getY(), true);
+	}
+
+	@Override
+	public void elementCopied(Object source, int fromIndex, int toIndex,
+			int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementCopied(Object source, int fromIndex, int fromNewSize,
+			Object to, int toIndex) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void elementInserted(Object source, Object element, int pos,
+			int newSize) {
+
+		VisualizerElement parent = root;
+		VisualizerElement previousChild = pos - 1 >= 0 ? root.getVector().get(
+				pos - 1) : null;
+
+		VisualizerElement newElement = initElement(element, parent,
+				previousChild);
+
+		if (pos + 1< newSize) // if there is a child after us
+			//use pos not pos + 1 because the element has not been
+			//added to the vector yet, so pos + 1 in the user's
+			//vector is pos in the roots vector.
+			root.getVector().get(pos).setPreviousChild(newElement);
+
+		parent.getVector().insertElementAt(newElement, pos);
+		root.focusPosition();
+	}
+
+	@Override
+	public void elementMoved(Object source, int fromIndex, int toIndex) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementMoved(Object source, int fromIndex, int fromNewSize,
+			Object to, int toIndex) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void elementRemoved(Object source, int pos, int newSize) {
+
+		VisualizerElement toBeRemoved = root.getVector().get(pos);
+		shapes.remove(toBeRemoved.getShape());
+		LINE_VEC.remove(toBeRemoved.getVerticalLine());
+		LINE_VEC.remove(toBeRemoved.getHorizontalLine());
+
+		VisualizerElement parent = root;
+		VisualizerElement previousChild = toBeRemoved.getPreviousChild();
+
+		if (pos + 1 <= newSize)// If it is not the last element
+			root.getVector().get(pos + 1).setPreviousChild(previousChild);
+
+		parent.getVector().remove(toBeRemoved);
+
+		root.focusPosition();
+	}
+
+	public void elementRemoved(Object source, Object element, int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementReplaced(Object source, int fromIndex, int toIndex,
+			int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementReplaced(Object source, int fromIndex, int newFromSize,
+			Object to, int toIndex) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementsAdded(Object source, Collection element, int newSize) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void elementsCleared(Object source) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void collectionRemoved(int collectionNum) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void elementSwapped(Object source, int index1, Object other,
+			int index2) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * This method takes two elements and exchanges their parents and previous
+	 * elements. It then makes sure spacing is correct by calling
+	 * focusPositionAndLines
+	 */
+	public void elementSwapped(Object newParam, int index1, int index2) {
+		if (index1 < index2)
+			swapElements(newParam, index1, index2);
+		else
+			swapElements(newParam, index2, index1);
+
+	}
+
+	/*
+	 * This method takes two elements and exchanges their parents and previous
+	 * elements. It then makes sure spacing is correct by calling
+	 * focusPositionAndLines
+	 * 
+	 * This method assumes index1 < index2
+	 */
+	private void swapElements(Object newParam, int index1, int index2) {
+
+		// the two elements to be swapped
+		VisualizerElement firstElement = root.getVector().get(index1);
+		VisualizerElement secondElement = root.getVector().get(index2);
+
+		// the two elements after each of the elements to be swapped
+		VisualizerElement secondElementNext;
+		VisualizerElement firstElementNext;
+		/*
+		 * There is a corner case where secondElement.previousChild is
+		 * firstElement
+		 */
+
+		// the first element's previous child before it is reassigned
+		VisualizerElement tempPrevChild = firstElement.getPreviousChild();
+
+		if (index2 != index1 + 1) {// the elements are not adjacent
+
+			// set previous elements for the two nodes
+			firstElement.setPreviousChild(secondElement.getPreviousChild());
+			secondElement.setPreviousChild(tempPrevChild);
+
+			// set previous elements for the nodes referencing the swapped nodes
+			if (index1 + 1 < root.getVector().size()) {
+				firstElementNext = root.getVector().get(index1 + 1);
+				firstElementNext.setPreviousChild(secondElement);
+			}
+			if (index2 + 1 < root.getVector().size()) {
+				secondElementNext = root.getVector().get(index2 + 1);
+				secondElementNext.setPreviousChild(firstElement);
+			}
+
+		} else { // the elements are adjacent
+			firstElement.setPreviousChild(secondElement);
+			secondElement.setPreviousChild(tempPrevChild);
+
+			// set previous elements for the nodes referencing the second node
+			if (index2 + 1 < root.getVector().size()) {
+				secondElementNext = root.getVector().get(index2 + 1);
+				secondElementNext.setPreviousChild(firstElement);
+			}
+		}
+
+		// swap the elements in root
+		root.getVector().swap(index1, index2);
+
+		root.focusPosition();
+	}
+}

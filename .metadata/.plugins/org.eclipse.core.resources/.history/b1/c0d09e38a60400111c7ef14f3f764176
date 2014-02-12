@@ -1,0 +1,156 @@
+package nodes;
+
+import util.models.AListenableVector;
+import util.models.ListenableVector;
+import bus.uigen.shapes.ALineModel;
+import bus.uigen.shapes.SimpleShape;
+
+public abstract class AVisualizerElementSkeleton implements VisualizerElement {
+
+	protected SimpleShape shape;
+	protected Object object;
+	protected ALineModel verticalLine, horizontalLine;
+	protected int horizontalLineYOffset, verticalLineXOffset,
+			elementShapeYOffset, elementShapeXOffset;
+	protected List<ALineModel> lines;
+	protected VisualizerElement parent, previousChild;
+	protected ListenableVector<VisualizerElement> vector = new AListenableVector<VisualizerElement>();
+	protected boolean animate;
+
+	public AVisualizerElementSkeleton(SimpleShape _s, Object _o, ALineModel _l,
+			ALineModel _l2) {
+		shape = _s;
+		object = _o;
+		verticalLine = _l;
+		horizontalLine = _l2;
+	}
+
+	public void setAnimate(boolean newVal) {
+		animate = newVal;
+	}
+
+	public void setParent(VisualizerElement p) {
+		parent = p;
+	}
+
+	public void setPreviousChild(VisualizerElement p) {
+		previousChild = p;
+	}
+
+	/************** Getters *****************************/
+	public VisualizerElement getPreviousChild() {
+		return previousChild;
+	}
+
+	public VisualizerElement getParent() {
+		return parent;
+	}
+
+	public ListenableVector<VisualizerElement> getVector() {
+
+		return vector;
+	}
+
+	public int getHorizontalLineYOffset() {
+		return horizontalLineYOffset;
+	}
+
+	public int getVerticalLineXOffset() {
+		return verticalLineXOffset;
+	}
+
+	public int getElementShapeYOffset() {
+		return elementShapeYOffset;
+	}
+
+	public int getElementShapeXOffset() {
+		return elementShapeXOffset;
+	}
+
+	public void setHorizontalLineYOffset(int newY) {
+		horizontalLineYOffset = newY;
+	}
+
+	public void setVerticalLineXOffset(int newX) {
+		verticalLineXOffset = newX;
+	}
+
+	public void setElementShapeYOffset(int newY) {
+		elementShapeYOffset = newY;
+	}
+
+	public void setElementShapeXOffset(int newX) {
+		elementShapeXOffset = newX;
+	}
+
+	public SimpleShape getShape() {
+		return shape;
+	}
+
+	public ALineModel getVerticalLine() {
+		return verticalLine;
+	}
+
+	public ALineModel getHorizontalLine() {
+		return horizontalLine;
+	}
+
+	@Override
+	public abstract void focusPosition(VisualizerElement node);
+
+	public void focusPosition() {
+		focusPosition(this);
+	}
+
+	@Override
+	public Object getObject() {
+		return object;
+	}
+
+	public void setObject(Object o) {
+		object = o;
+	}
+
+	@Override
+	public int getHeight() {
+		return shape.getHeight();
+	}
+
+	@Override
+	public int getWidth() {
+		return shape.getWidth();
+	}
+
+	@Override
+	public int getX() {
+		return shape.getX();
+	}
+
+	@Override
+	public int getY() {
+		return shape.getY();
+	}
+
+	@Override
+	public void setHeight(int arg0) {
+		shape.setHeight(arg0);
+	}
+
+	@Override
+	public void setWidth(int arg0) {
+		shape.setWidth(arg0);
+
+	}
+
+	@Override
+	public void setX(int arg0) {
+		shape.setX(arg0);
+
+	}
+
+	@Override
+	public void setY(int arg0) {
+		shape.setY(arg0);
+
+	}
+}

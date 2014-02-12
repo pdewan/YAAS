@@ -1,0 +1,54 @@
+package examples;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import collection.visualizers.ACollectionVisualizer;
+import collection.visualizers.ALinearCollectionVisualizer;
+
+import bus.uigen.ObjectEditor;
+import bus.uigen.shapes.ALabelModel;
+import bus.uigen.shapes.ALineModel;
+import bus.uigen.shapes.ARectangleModel;
+import bus.uigen.shapes.ATextModel;
+import bus.uigen.shapes.AnOvalModel;
+import bus.uigen.shapes.Shape;
+import shapes.ACompositeShape;
+import util.models.AListenableVector;
+import util.models.ListenableVector;
+import wdh.pgm.cv.iface.CollectionVisualizer;
+
+public class Temp 
+{
+	public static void main(String args[])
+	{
+		
+		
+		ListenableVector<Shape> l = new AListenableVector<Shape>();
+		
+		/*Shape head = new AnOvalModel(10,10,10,10);
+		Shape body = new ALineModel(15,20,0,8);
+		Shape leg1 = new ALineModel(15,28,5,5);
+		Shape leg2  = new ALineModel(15,28,-5,5);
+		Shape arm1  = new ALineModel(15,25,5,-5);
+		Shape arm2  = new ALineModel(15,25,-5,-5);
+		
+		List<Shape> l = new ArrayList<Shape>();
+		l.add(head);
+		l.add(body);
+		l.add(leg1);
+		l.add(leg2);
+		l.add(arm1);
+		l.add(arm2);*/
+		
+		ListenableVector vector = new AListenableVector();
+		
+		
+		ACollectionVisualizer visualizer = new ALinearCollectionVisualizer(new ATextModel("",0,0,80,20));
+		visualizer.setDynamicHeight(false);
+		visualizer.setDynamicWidth(true);
+		visualizer.visualize(vector);
+		ObjectEditor.edit(visualizer);
+		ObjectEditor.edit(visualizer.getController());
+	}
+}

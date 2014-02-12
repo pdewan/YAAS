@@ -1,0 +1,5 @@
+package nodes;
+
+public interface GraphElement extends VisualizerElement<GraphElement>{
+
+}

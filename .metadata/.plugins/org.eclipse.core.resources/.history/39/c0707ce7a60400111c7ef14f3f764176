@@ -1,0 +1,16 @@
+package nodes;
+
+import util.models.ListenableVector;
+import bus.uigen.shapes.ALineModel;
+import bus.uigen.shapes.SimpleShape;
+
+public interface VisualizerElement extends SimpleShape, LinkedTree
+{	
+	public void focusPosition(VisualizerElement node);
+	public void focusPosition();
+	
+	public SimpleShape getShape();
+	
+	public ListenableVector<VisualizerElement> getVector();
+
+}

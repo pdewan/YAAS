@@ -1,0 +1,13 @@
+1320161708732	Rename package 'test'
+1320162110395	Move compilation unit
+1320164735725	Rename type 'AnAbstractVisualizerElement'
+1320164908169	Rename type 'AVisualizerRoot'
+1320164917637	Rename type 'AVisualizerElement'
+1320166059399	Rename local variable 'lastElement'
+1320166194342	Rename type 'ATreeBasedCollectionVisualizer2'
+1320166217255	Rename type 'ALinearCollectionVisualizer'
+1320166239525	Delete element
+1320188003938	Rename method 'initGraph'
+1320188482124	Delete element
+1320188496549	Rename type 'BubbleSortExample'
+1320254092204	Rename local variable 'node1'

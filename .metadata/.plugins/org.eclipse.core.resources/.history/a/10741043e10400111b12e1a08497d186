@@ -1,0 +1,9 @@
+package nodes;
+
+import bus.uigen.shapes.AnArcModel;
+import bus.uigen.shapes.SimpleShape;
+import util.models.ListenableVector;
+
+public interface GraphElement extends VisualizerElement<GraphElement>{
+	ListenableVector<AnArcModel >getLines();
+}
