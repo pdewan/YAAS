@@ -12,6 +12,6 @@
 	<classpathentry kind="lib" path="D:/dewan_backup/Java/lib/collections-generic-4.01.jar"/>
 	<classpathentry kind="lib" path="D:/Program Files/Java/jdk1.7.0_21/lib/tools.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/codeanalyzer"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ObjectEditor"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/uigen"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
