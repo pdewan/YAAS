@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import shapes.AttributedShape;
 import shapes.FlexibleShape;
-import util.models.PropertyListenerRegisterer;
+import util.models.PropertyListenerRegistrar;
 
 import yaas.AVisualizationtBasedVisualizer;
 import yaas.AVisualizer;

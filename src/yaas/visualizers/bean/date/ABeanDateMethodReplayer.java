@@ -5,7 +5,7 @@ import java.beans.PropertyChangeListener;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import util.models.PropertyListenerRegisterer;
+import util.models.PropertyListenerRegistrar;
 import yaas.common.Util;
 import yaas.trappers.EventTrapper;
 import yaas.visualizers.bean.ABeanEventTrapper;
@@ -21,7 +21,7 @@ public class ABeanDateMethodReplayer extends ABeanMethodReplayer implements
 	private ASimplifiedBeanDateLayoutManager layoutManager;
 
 	public ABeanDateMethodReplayer(ASimplifiedBeanDateLayoutManager layoutManager,
-			PropertyListenerRegisterer bean) {
+			PropertyListenerRegistrar bean) {
 		super(bean);
 		this.layoutManager = layoutManager;
 	}

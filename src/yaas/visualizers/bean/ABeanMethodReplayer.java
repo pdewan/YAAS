@@ -4,7 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import util.models.PropertyListenerRegisterer;
+import util.models.PropertyListenerRegistrar;
 import yaas.trappers.EventTrapper;
 
 
@@ -14,9 +14,9 @@ public abstract class ABeanMethodReplayer implements PropertyChangeListener//,
 {
 
 	protected PropertyChangeSupport propertyChangeSupport;
-	protected PropertyListenerRegisterer bean;
+	protected PropertyListenerRegistrar bean;
 
-	public ABeanMethodReplayer(PropertyListenerRegisterer bean) {
+	public ABeanMethodReplayer(PropertyListenerRegistrar bean) {
 		this.bean = bean;
 		propertyChangeSupport = new PropertyChangeSupport(this.bean);
 	}

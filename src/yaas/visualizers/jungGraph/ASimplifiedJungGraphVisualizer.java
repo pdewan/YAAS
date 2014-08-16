@@ -1,7 +1,7 @@
 package yaas.visualizers.jungGraph;
 
 
-import util.models.PropertyListenerRegisterer;
+import util.models.PropertyListenerRegistrar;
 import yaas.AVisualizer;
 import yaas.Buffer;
 import yaas.Visualizer;
