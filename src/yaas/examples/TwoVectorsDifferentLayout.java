@@ -74,7 +74,7 @@ public class TwoVectorsDifferentLayout extends DynamicSmallTreeExample {
 	}
 	
 	public static void main(String[] args) {
-		ParserMain.parse(Algorithms.class);
+		ParserMain.parse(Algorithms.class, ".");
 		
 	
 //		ModularSorting.fillElements();

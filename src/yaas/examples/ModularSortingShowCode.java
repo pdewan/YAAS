@@ -18,7 +18,7 @@ public class ModularSortingShowCode extends ModularSorting {
 	
 	public static void setCodeParameters() {
 		visualizer.setShowCode(true);
-		SourceClass aSourceClass = SourceClassManager.getInstance().getOrCreateClassInfo(Algorithms.class);
+		SourceClass aSourceClass = SourceClassManager.getInstance().getOrCreateClassInfo(Algorithms.class, ".");
 		SourceMethod sourceMethod = aSourceClass.getSourceMethodAtLineNumber(63);
 		CodeLayoutManager codeLayoutManager = visualizer.getCodeLayoutManager();
 		codeLayoutManager.displayCode(sourceMethod, 0, new Point (50, 50));

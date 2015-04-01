@@ -167,7 +167,7 @@ public class ModularSorting extends SharedDriver {
 	
 
 	public static void main(String[] args) {
-		ParserMain.parse(Algorithms.class);
+		ParserMain.parse(Algorithms.class, ".");
 		
 		createRootObjects();
 		fillFlatElements();

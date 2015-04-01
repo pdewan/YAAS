@@ -80,7 +80,7 @@ public class TwoVectorsFrontMove extends ModularSorting {
 	}
 	
 	public static void main(String[] args) {
-		ParserMain.parse(Algorithms.class);
+		ParserMain.parse(Algorithms.class, ".");
 		
 	
 		fillFlatElements();
