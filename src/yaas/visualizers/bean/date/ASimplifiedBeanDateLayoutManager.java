@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import shapes.AttributedShape;
 import shapes.BoundedShape;
 import shapes.FlexibleShape;
-import util.models.PropertyListenerRegistrar;
+import util.models.PropertyListenerRegisterer;
 import yaas.VisualizationBasedVisualizer;
 import yaas.common.VestigalListenableVector;
 import yaas.layout.VisualizationBasedLayoutManager;
@@ -23,11 +23,11 @@ import bus.uigen.shapes.ListenableShapeVector;
 import bus.uigen.translator.Translator;
 
 public class ASimplifiedBeanDateLayoutManager implements
-		VisualizationBasedLayoutManager<PropertyListenerRegistrar> {
+		VisualizationBasedLayoutManager<PropertyListenerRegisterer> {
 
 	private ADateLayoutManager layoutManager;
 	ASimplifiedBeanVisualizer visualizer;
-	Translator<PropertyListenerRegistrar, AttributedShape> dataToShapeTranslator;
+	Translator<PropertyListenerRegisterer, AttributedShape> dataToShapeTranslator;
 
 	public ASimplifiedBeanDateLayoutManager(ASimplifiedBeanVisualizer aVisualizer, int x, int y, int radius) {
 		
@@ -35,7 +35,7 @@ public class ASimplifiedBeanDateLayoutManager implements
 		visualizer = aVisualizer;
 	}
 
-	public util.models.ListenableVector<BoundedShape> display(PropertyListenerRegistrar bean) {
+	public util.models.ListenableVector<BoundedShape> display(PropertyListenerRegisterer bean) {
 		if (bean instanceof ASimplifiedBeanBuffer) {
 			ObservableDate observableDate = new ObservableDate();
 			ASimplifiedBeanDate date = (ASimplifiedBeanDate) ((ASimplifiedBeanBuffer)bean).getBean();
@@ -76,7 +76,7 @@ public class ASimplifiedBeanDateLayoutManager implements
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public PropertyListenerRegistrar createBuffer() {
+	public PropertyListenerRegisterer createBuffer() {
 		return new ASimplifiedBeanBuffer(visualizer);
 	}
 
@@ -101,7 +101,7 @@ public class ASimplifiedBeanDateLayoutManager implements
 	}
 
 	public ListenableShapeVector getContainingShapes(
-			PropertyListenerRegistrar data) {
+			PropertyListenerRegisterer data) {
 		// TODO Auto-generated method stub
 		return null;
 	}

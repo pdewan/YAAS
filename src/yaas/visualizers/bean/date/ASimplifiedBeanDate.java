@@ -4,12 +4,12 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Date;
 
-import util.models.PropertyListenerRegistrar;
+import util.models.PropertyListenerRegisterer;
 import yaas.trappers.EventTrapper;
 import yaas.visualizers.bean.BeanEventGenerator;
 
 
-public class ASimplifiedBeanDate implements PropertyListenerRegistrar {
+public class ASimplifiedBeanDate implements PropertyListenerRegisterer {
 
 	private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(
 			this);

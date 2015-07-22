@@ -6,7 +6,7 @@ import java.beans.PropertyChangeListener;
 
 
 import shapes.AttributedShape;
-import util.models.PropertyListenerRegistrar;
+import util.models.PropertyListenerRegisterer;
 import yaas.AVisualizationtBasedVisualizer;
 import yaas.AVisualizer;
 import yaas.Buffer;
@@ -17,15 +17,15 @@ import yaas.layout.LayoutManager;
 import yaas.layout.VisualizationBasedLayoutManager;
 
 public class ASimplifiedBeanVisualizer extends
-		AVisualizationtBasedVisualizer<PropertyChangeListener, PropertyListenerRegistrar>
+		AVisualizationtBasedVisualizer<PropertyChangeListener, PropertyListenerRegisterer>
 		implements
-		VisualizationBasedVisualizer<PropertyChangeListener, PropertyListenerRegistrar> {
+		VisualizationBasedVisualizer<PropertyChangeListener, PropertyListenerRegisterer> {
 
 	private static final long serialVersionUID = 5651052060059133256L;
 	private int pauseTimeInMilliseconds = 20;
-	private PropertyListenerRegistrar bean;
+	private PropertyListenerRegisterer bean;
 
-	public ASimplifiedBeanVisualizer(/*VisualizationBasedLayoutManager<PropertyListenerRegisterer> layoutManager,*/ PropertyListenerRegistrar bean) {
+	public ASimplifiedBeanVisualizer(/*VisualizationBasedLayoutManager<PropertyListenerRegisterer> layoutManager,*/ PropertyListenerRegisterer bean) {
 		super();
 //		firstLayoutManager = aLayoutManager;
 		this.bean = bean;
@@ -38,9 +38,9 @@ public class ASimplifiedBeanVisualizer extends
 //		this.bean = data;
 //		((ASimplifiedBeanBuffer) getRootBuffer()).setBean(this.bean);
 //	}
-	PropertyListenerRegistrar beanBuffer;
+	PropertyListenerRegisterer beanBuffer;
 	
-	public PropertyListenerRegistrar getRootBuffer() {
+	public PropertyListenerRegisterer getRootBuffer() {
 		if (beanBuffer == null)
 			beanBuffer = createBuffer();
 		return beanBuffer;
@@ -52,9 +52,9 @@ public class ASimplifiedBeanVisualizer extends
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected PropertyListenerRegistrar setBufferData(PropertyListenerRegistrar data) {
+	protected PropertyListenerRegisterer setBufferData(PropertyListenerRegisterer data) {
 //		PropertyListenerRegisterer rootBuffer = createBuffer();
-		PropertyListenerRegistrar rootBuffer = getRootBuffer();
+		PropertyListenerRegisterer rootBuffer = getRootBuffer();
 
 		((Buffer) rootBuffer).setBufferData(data);
 //		rootBuffers.add(rootBuffer);
@@ -62,7 +62,7 @@ public class ASimplifiedBeanVisualizer extends
 		return rootBuffer;
 	}
 
-	protected PropertyListenerRegistrar createBuffer() {
+	protected PropertyListenerRegisterer createBuffer() {
 		return new ASimplifiedBeanBuffer(this);
 	}
 
@@ -78,7 +78,7 @@ public class ASimplifiedBeanVisualizer extends
 //	}
 
 	@Override
-	public void addObserver(PropertyListenerRegistrar anObservable,
+	public void addObserver(PropertyListenerRegisterer anObservable,
 			PropertyChangeListener anObserver) {
 		anObservable.addPropertyChangeListener(anObserver);
 	}

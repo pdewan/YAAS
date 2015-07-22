@@ -3,7 +3,7 @@ package yaas.visualizers.bean;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import util.models.PropertyListenerRegistrar;
+import util.models.PropertyListenerRegisterer;
 import yaas.ABuffer;
 import yaas.Buffer;
 import yaas.VisualizationBasedVisualizer;
@@ -13,20 +13,20 @@ import yaas.trappers.EventTrapper;
 
 
 public class ASimplifiedBeanBuffer extends
-		ABuffer<PropertyChangeListener, PropertyListenerRegistrar> implements
-		PropertyChangeListener, PropertyListenerRegistrar,
-		Buffer<PropertyChangeListener, PropertyListenerRegistrar>
+		ABuffer<PropertyChangeListener, PropertyListenerRegisterer> implements
+		PropertyChangeListener, PropertyListenerRegisterer,
+		Buffer<PropertyChangeListener, PropertyListenerRegisterer>
 //		EventTrapper<PropertyChangeListener, BeanEventGenerator>,
 //		BeanEventGenerator 
 		{
 
 	public ASimplifiedBeanBuffer(
-			VisualizationBasedVisualizer<PropertyChangeListener, PropertyListenerRegistrar> visualizer) {
+			VisualizationBasedVisualizer<PropertyChangeListener, PropertyListenerRegisterer> visualizer) {
 		super(visualizer);
 	}
 
-	private PropertyListenerRegistrar copy;
-	public void setBean(PropertyListenerRegistrar observedBean) {
+	private PropertyListenerRegisterer copy;
+	public void setBean(PropertyListenerRegisterer observedBean) {
 
 		try {
 			observedBean.addPropertyChangeListener(this);
