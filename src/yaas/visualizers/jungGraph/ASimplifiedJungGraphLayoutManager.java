@@ -8,7 +8,7 @@ import shapes.AttributedShape;
 import yaas.common.VestigalListenableVector;
 import yaas.layout.LayoutManager;
 import yaas.shapemappers.PointerShapeCreator;
-import bus.uigen.jung.AJungGraphManager;
+import bus.uigen.jung.AMonolithicJungGraphManager;
 import bus.uigen.jung.JungGraphApplet;
 import bus.uigen.jung.JungGraphManager;
 import edu.uci.ics.jung.graph.Graph;
@@ -73,7 +73,7 @@ public class ASimplifiedJungGraphLayoutManager<V,E> implements
 		JungGraphApplet applet = new JungGraphApplet();
 		applet.init();
 		Graph<V,E> aGraph = (Graph<V,E>) visualizer.getRootBuffer();
-		jungGraphManager = new AJungGraphManager(aGraph,
+		jungGraphManager = new AMonolithicJungGraphManager(aGraph,
 				applet.getContentPane());
 //		applet.getContentPane().setBackground(Color.BLUE);
 		panel = applet;
