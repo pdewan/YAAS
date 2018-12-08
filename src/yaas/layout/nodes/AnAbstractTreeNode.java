@@ -3,7 +3,7 @@ package yaas.layout.nodes;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
+//import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
 
 import shapes.BoundedShape;
 

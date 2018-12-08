@@ -1,6 +1,5 @@
 package yaas.visualizers.collection.flat;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -9,22 +8,13 @@ import java.util.Collection;
 import java.util.List;
 
 import bus.uigen.shapes.ListenableShapeVector;
-import shapes.AttributedShape;
 import shapes.BoundedShape;
-import shapes.FlexibleShape;
-import sun.security.action.GetLongAction;
-import util.misc.Common;
+import util.models.ListenableVector;
 import util.models.VectorMethodsListener;
-import util.session.AnAbstractCommunicator;
 import util.trace.Tracer;
 import yaas.animators.AnimationUtil;
 import yaas.collection.AnAbstractGraphicsCollectionMethodAnimator;
-import yaas.collection.CollectionLayoutManager;
-import util.models.AListenableVector;
-import util.models.ListenableVector;
 import yaas.shapemappers.ObjectToShapeTranslator;
-import yaas.shapemappers.PointerShapeCreator;
-import yaas.trappers.EventTrapper;
 import yaas.visualizers.collection.CollectionVisualizer;
 
 public class AGraphicFlatCollectionVectorMethodsAnimator<ElementType> 
